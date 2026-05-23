@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './config/db.js'
-import {userRoutes, jobRoutes, applicationRoutes} from './routes/routes.js'
+import { userRoutes, jobRoutes, applicationRoutes } from './routes/routes.js'
 
 
 const app = express()
@@ -12,7 +12,11 @@ connectDB()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
-app.use(cors())
+app.use(cors(
+    {
+        origin: ["http://localhost:5173", "https://job-application-frontend-one.vercel.app/login"]
+    }
+))
 
 
 // Routers Calling
